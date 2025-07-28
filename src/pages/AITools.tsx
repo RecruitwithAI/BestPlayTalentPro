@@ -149,7 +149,7 @@ const AITools = () => {
             return (
               <Card 
                 key={tool.id} 
-                className="group bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-smooth hover:transform hover:scale-105 hover:glow-primary"
+                className="group bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-smooth hover:transform hover:scale-105 hover:glow-primary flex flex-col h-full"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between mb-4">
@@ -174,8 +174,8 @@ const AITools = () => {
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="flex flex-col flex-1">
+                  <div className="space-y-4 flex-1">
                     <div>
                       <p className="text-sm font-medium text-muted-foreground mb-2">Key Features:</p>
                       <ul className="space-y-1">
@@ -187,17 +187,17 @@ const AITools = () => {
                         ))}
                       </ul>
                     </div>
-                    
-                    <Button 
-                      onClick={() => handleToolLaunch(tool.name)}
-                      disabled={tool.status === 'Coming Soon'}
-                      variant={tool.premium ? "gaming" : "secondary"}
-                      className="w-full"
-                    >
-                      {tool.status === 'Coming Soon' ? 'Coming Soon' : 
-                       tool.status === 'Beta' ? 'Try Beta' : 'Launch Tool'}
-                    </Button>
                   </div>
+                  
+                  <Button 
+                    onClick={() => handleToolLaunch(tool.name)}
+                    disabled={tool.status === 'Coming Soon'}
+                    variant={tool.premium ? "gaming" : "secondary"}
+                    className="w-full mt-4"
+                  >
+                    {tool.status === 'Coming Soon' ? 'Coming Soon' : 
+                     tool.status === 'Beta' ? 'Try Beta' : 'Launch Tool'}
+                  </Button>
                 </CardContent>
               </Card>
             );
