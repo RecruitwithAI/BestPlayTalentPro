@@ -51,10 +51,10 @@ const Dashboard = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            Welcome back, <span className="text-gradient">GamerPro</span>! 🎮
+            Welcome back, <span className="text-gradient">TA Pro</span>! 🎮
           </h1>
           <p className="text-muted-foreground text-lg">
-            Ready to level up? Here's what's happening in your gaming journey.
+            Ready to level up? Here's what's happening in your Talent Acquisition journey.
           </p>
         </div>
 
