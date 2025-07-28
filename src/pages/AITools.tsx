@@ -18,17 +18,17 @@ const AITools = () => {
     {
       id: 1,
       name: "Strategy Analyzer",
-      description: "AI-powered analysis of your gameplay patterns and strategic decisions",
+      description: "AI-powered analysis of your recruiting patterns and strategic decisions",
       icon: Brain,
       category: "Analysis",
-      features: ["Gameplay Pattern Recognition", "Strategic Recommendations", "Performance Metrics"],
+      features: ["Recruiting Pattern Recognition", "Strategic Recommendations", "Performance Metrics"],
       status: "Available",
       premium: false
     },
     {
       id: 2,
       name: "Skill Predictor",
-      description: "Predict your performance in upcoming matches based on current form",
+      description: "Predict your performance in upcoming contests based on current form",
       icon: Target,
       category: "Prediction",
       features: ["Match Outcome Prediction", "Skill Rating Forecast", "Improvement Timeline"],
@@ -38,7 +38,7 @@ const AITools = () => {
     {
       id: 3,
       name: "Real-time Coach",
-      description: "Live AI coaching during gameplay with instant feedback and tips",
+      description: "Live AI coaching during recruiting simulation contest with instant feedback and tips",
       icon: Zap,
       category: "Coaching",
       features: ["Live Feedback", "Tactical Suggestions", "Decision Support"],
@@ -48,7 +48,7 @@ const AITools = () => {
     {
       id: 4,
       name: "Performance Insights",
-      description: "Deep dive analytics into your gaming performance trends",
+      description: "Deep dive analytics into your recruiting performance trends",
       icon: TrendingUp,
       category: "Analytics",
       features: ["Trend Analysis", "Weakness Identification", "Progress Tracking"],
@@ -58,7 +58,7 @@ const AITools = () => {
     {
       id: 5,
       name: "Opponent Scanner",
-      description: "Analyze opponent patterns and predict their next moves",
+      description: "Analyze opponent patterns",
       icon: Eye,
       category: "Reconnaissance",
       features: ["Player Profiling", "Behavior Prediction", "Counter-strategy Generation"],
@@ -102,7 +102,7 @@ const AITools = () => {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            AI-Powered <span className="text-gradient">Gaming Tools</span>
+            AI-Powered <span className="text-gradient">Recruiting AI Tools</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Harness the power of artificial intelligence to analyze, predict, and enhance 
@@ -214,7 +214,7 @@ const AITools = () => {
               </h3>
               <p className="text-muted-foreground mb-6">
                 Our AI development team can create specialized tools tailored to your 
-                specific gaming needs and strategies.
+                specific reruitment needs and strategies.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="gaming">
