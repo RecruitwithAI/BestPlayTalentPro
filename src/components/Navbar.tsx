@@ -59,13 +59,10 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-2">
-            <Link to="/login">
-              <Button variant="ghost">Sign In</Button>
-            </Link>
+          {/* Auth Button */}
+          <div className="hidden md:flex items-center">
             <Link to="/register">
-              <Button variant="gaming">Join Now</Button>
+              <Button variant="gaming">Sign-up/ Login</Button>
             </Link>
           </div>
 
@@ -103,15 +100,10 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              <div className="border-t border-border pt-3 mt-3 space-y-2">
-                <Link to="/login" onClick={() => setIsOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start">
-                    Sign In
-                  </Button>
-                </Link>
+              <div className="border-t border-border pt-3 mt-3">
                 <Link to="/register" onClick={() => setIsOpen(false)}>
                   <Button variant="gaming" className="w-full">
-                    Join Now
+                    Sign-up/ Login
                   </Button>
                 </Link>
               </div>
