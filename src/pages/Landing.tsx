@@ -18,34 +18,34 @@ const Landing = () => {
     {
       icon: Zap,
       title: "AI-Powered Tools",
-      description: "Advanced AI tools to enhance your gaming skills and strategy analysis",
+      description: "Advanced AI tools to enhance your recruiting skills and candidate analysis",
       color: "text-primary"
     },
     {
       icon: Users,
-      title: "Live Jam Sessions",
-      description: "Real-time collaborative gaming sessions with players worldwide",
+      title: "Live Collaboration",
+      description: "Real-time collaborative recruiting sessions with TA professionals worldwide",
       color: "text-secondary"
     },
     {
       icon: Trophy,
-      title: "Epic Contests",
-      description: "Compete in tournaments and challenges to prove your skills",
+      title: "Recruiting Challenges",
+      description: "Compete in contests and challenges to prove your recruiting expertise",
       color: "text-accent"
     },
     {
       icon: GraduationCap,
       title: "Skill Training",
-      description: "Structured learning paths and training modules for all skill levels",
+      description: "Structured learning paths and training modules for all experience levels",
       color: "text-primary"
     }
   ];
 
   const stats = [
-    { label: "Active Players", value: "25K+", icon: Users },
+    { label: "Active Recruiters", value: "25K+", icon: Users },
     { label: "AI Tools", value: "50+", icon: Zap },
     { label: "Live Sessions", value: "1K+", icon: Play },
-    { label: "Contests Won", value: "500+", icon: Trophy },
+    { label: "Challenges Completed", value: "500+", icon: Trophy },
   ];
 
   return (
@@ -58,17 +58,17 @@ const Landing = () => {
           <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-2 mb-6 animate-fade-in-up">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">The Ultimate Gaming Community</span>
+              <span className="text-sm font-medium text-primary">The Ultimate Recruiting Community</span>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up">
-              Level Up Your Game with{' '}
-              <span className="text-gradient-hero">BestPlay Hub</span>
+              Level Up Your Recruiting with{' '}
+              <span className="text-gradient-hero">TalentPro Hub</span>
             </h1>
             
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in-up">
-              Join the most advanced gaming community platform. Master new skills with AI-powered tools, 
-              compete in epic contests, and connect with players worldwide.
+              Join the most advanced recruiting community platform. Master new skills with AI-powered tools, 
+              compete in challenges, and connect with TA professionals worldwide.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
@@ -114,7 +114,7 @@ const Landing = () => {
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Our platform combines cutting-edge AI technology with community-driven features 
-              to create the ultimate gaming experience.
+              to create the ultimate recruiting experience.
             </p>
           </div>
 
@@ -149,8 +149,8 @@ const Landing = () => {
               <span className="text-gradient-secondary">Join the Elite</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Connect with thousands of players, master new strategies with AI, 
-              and compete in the most exciting gaming tournaments.
+              Connect with thousands of recruiters, master new strategies with AI, 
+              and compete in the most exciting recruiting challenges.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/register">

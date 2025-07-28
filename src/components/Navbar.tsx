@@ -19,8 +19,8 @@ const Navbar = () => {
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'AI Tools', href: '/ai-tools', icon: Zap },
-    { name: 'Live Jam', href: '/live-jam', icon: Users },
-    { name: 'Contests', href: '/contests', icon: Trophy },
+    { name: 'Collaboration', href: '/live-jam', icon: Users },
+    { name: 'Challenges', href: '/contests', icon: Trophy },
     { name: 'Training', href: '/training', icon: GraduationCap },
   ];
 
@@ -33,7 +33,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Gamepad2 className="h-8 w-8 text-primary" />
-            <span className="font-bold text-xl text-gradient">BestPlay Hub</span>
+            <span className="font-bold text-xl text-gradient">TalentPro Hub</span>
           </Link>
 
           {/* Desktop Navigation */}
