@@ -74,13 +74,8 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
               <Link to="/register">
                 <Button variant="hero" size="xl" className="group">
-                  Start Your Journey
+                  Sign-up / Login
                   <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button variant="outline" size="xl">
-                  Sign In
                 </Button>
               </Link>
             </div>
