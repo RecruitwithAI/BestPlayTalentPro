@@ -26,16 +26,6 @@ const AITools = () => {
       premium: false
     },
     {
-      id: 2,
-      name: "Skill Predictor",
-      description: "Predict your performance in upcoming contests based on current form",
-      icon: Target,
-      category: "Prediction",
-      features: ["Match Outcome Prediction", "Skill Rating Forecast", "Improvement Timeline"],
-      status: "Available",
-      premium: true
-    },
-    {
       id: 3,
       name: "Real-time Coach",
       description: "Live AI coaching during recruiting simulation contest with instant feedback and tips",
@@ -54,16 +44,6 @@ const AITools = () => {
       features: ["Trend Analysis", "Weakness Identification", "Progress Tracking"],
       status: "Available",
       premium: false
-    },
-    {
-      id: 5,
-      name: "Opponent Scanner",
-      description: "Analyze opponent patterns",
-      icon: Eye,
-      category: "Reconnaissance",
-      features: ["Player Profiling", "Behavior Prediction", "Counter-strategy Generation"],
-      status: "Coming Soon",
-      premium: true
     },
     {
       id: 6,
