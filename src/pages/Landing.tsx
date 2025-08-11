@@ -144,7 +144,7 @@ const Landing = () => {
               <span className="text-gradient-secondary">Join the Elite</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Connect with thousands of recruiters, master new strategies with AI, 
+              Connect with recruiters across the globe, master new strategies with AI, 
               and compete in the most exciting recruiting challenges.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
