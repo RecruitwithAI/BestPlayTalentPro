@@ -150,13 +150,8 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/register">
                 <Button variant="gaming" size="xl" className="group animate-glow-pulse">
-                  Get Started Free
+                  Sign-up / Login
                   <Target className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/dashboard">
-                <Button variant="outline" size="xl">
-                  Explore Platform
                 </Button>
               </Link>
             </div>
