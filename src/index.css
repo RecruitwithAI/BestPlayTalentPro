@@ -189,4 +189,40 @@ All colors MUST be HSL.
   .transition-bounce {
     transition: var(--transition-bounce);
   }
+  
+  /* Animated per-letter styling for Sign-up / Login button */
+  .signup-letter {
+    display: inline-block;
+    color: hsl(var(--primary));
+    opacity: 0.9;
+    animation: signup-letter 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes signup-letter {
+  0% {
+    opacity: 0;
+    transform: translateY(0.25em);
+    color: hsl(var(--primary));
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+    color: hsl(var(--primary));
+  }
+  60% {
+    opacity: 1;
+    color: hsl(var(--primary));
+  }
+  100% {
+    opacity: 1;
+    color: hsl(var(--primary));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signup-letter {
+    animation: none;
+    opacity: 1;
+  }
 }

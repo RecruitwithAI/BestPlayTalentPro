@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+
+import SignupLoginButton from '@/components/SignupLoginButton';
 import { Card, CardContent } from '@/components/ui/card';
 import ThreeBackground from '@/components/ThreeBackground';
 import { 
@@ -7,9 +7,7 @@ import {
   Users, 
   Trophy, 
   GraduationCap,
-  Target,
   Sparkles,
-  ChevronRight,
   Play
 } from 'lucide-react';
 
@@ -72,12 +70,7 @@ const Landing = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up">
-              <Link to="/register">
-                <Button variant="hero" size="xl" className="group">
-                  Sign-up / Login
-                  <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+              <SignupLoginButton to="/register" />
             </div>
 
             {/* Stats */}
@@ -148,12 +141,7 @@ const Landing = () => {
               and compete in the most exciting recruiting challenges.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
-                <Button variant="gaming" size="xl" className="group animate-glow-pulse">
-                  Sign-up / Login
-                  <Target className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <SignupLoginButton to="/register" />
             </div>
           </div>
         </div>
