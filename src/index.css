@@ -203,12 +203,12 @@ All colors MUST be HSL.
   0% {
     opacity: 0;
     transform: translateY(0.25em);
-    color: hsl(var(--primary));
+    color: hsl(var(--secondary));
   }
   20% {
     opacity: 1;
     transform: translateY(0);
-    color: hsl(var(--primary));
+    color: hsl(var(--secondary));
   }
   60% {
     opacity: 1;
