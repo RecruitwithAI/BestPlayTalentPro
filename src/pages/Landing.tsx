@@ -61,7 +61,7 @@ const Landing = () => {
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up">
               Level Up Your Recruiting with{' '}
-              <span className="text-gradient-hero">TalentPro Hub</span>
+              <span className="text-gradient-hero">BestPlay</span>
             </h1>
             
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in-up">
