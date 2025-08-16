@@ -21,7 +21,7 @@ const buttonVariants = cva(
         gaming: "bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary transform hover:scale-105 transition-bounce",
         neon: "bg-gradient-secondary text-secondary-foreground hover:opacity-90 glow-neon transform hover:scale-105 transition-bounce",
         electric: "bg-accent text-accent-foreground hover:opacity-90 glow-electric transform hover:scale-105 transition-bounce",
-        hero: "bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-2xl transform hover:scale-105 transition-bounce text-lg font-bold",
+        hero: "bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-2xl transform hover:scale-105 transition-bounce text-lg",
         signup: "bg-transparent hover:bg-transparent text-primary hover:text-primary/90 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0",
       },
       size: {
