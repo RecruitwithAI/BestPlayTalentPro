@@ -33,7 +33,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Gamepad2 className="h-8 w-8 text-primary" />
-            <span className="font-bold text-xl text-gradient">BestPlay</span>
+            <span className="text-xl text-gradient">BestPlay</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -75,7 +75,7 @@ const Register = () => {
           <CardHeader className="text-center space-y-4">
             <div className="flex items-center justify-center space-x-2">
               <Gamepad2 className="h-8 w-8 text-primary animate-float" />
-              <span className="text-2xl font-bold text-gradient">BestPlay Hub</span>
+              <span className="text-2xl text-gradient">BestPlay Hub</span>
             </div>
             <CardTitle className="text-2xl">Join the Community</CardTitle>
             <CardDescription>

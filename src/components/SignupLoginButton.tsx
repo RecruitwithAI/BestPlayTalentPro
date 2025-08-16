@@ -14,7 +14,7 @@ const SignupLoginButton: React.FC<Props> = ({ to = "/register", className = "" }
     <Link to={to} aria-label={LABEL}>
       <Button
         variant="signup"
-        className={`px-0 py-0 h-auto text-2xl md:text-3xl font-extrabold bg-transparent ${className}`}
+        className={`px-0 py-0 h-auto text-2xl md:text-3xl bg-transparent ${className}`}
       >
         {LABEL.split("").map((ch, i) => (
           <span

@@ -50,7 +50,7 @@ const Dashboard = () => {
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">
+          <h1 className="text-3xl md:text-4xl mb-2">
             Welcome back, <span className="text-gradient">TA Pro</span>! 🎮
           </h1>
           <p className="text-muted-foreground text-lg">

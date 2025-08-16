@@ -59,7 +59,7 @@ const Landing = () => {
               <span className="text-sm font-medium text-primary">The Ultimate Recruiting Community</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-tight mb-6 animate-fade-in-up">
               Level Up Your Recruiting with{' '}
               <span className="text-gradient-hero">BestPlay</span>
             </h1>
@@ -81,7 +81,7 @@ const Landing = () => {
                   <Card key={index} className="bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-smooth">
                     <CardContent className="p-6 text-center">
                       <Icon className="h-8 w-8 text-primary mx-auto mb-2" />
-                      <div className="text-2xl font-bold text-gradient mb-1">{stat.value}</div>
+                      <div className="text-2xl text-gradient mb-1">{stat.value}</div>
                       <div className="text-sm text-muted-foreground">{stat.label}</div>
                     </CardContent>
                   </Card>
@@ -96,7 +96,7 @@ const Landing = () => {
       <section className="relative py-24 bg-gradient-to-b from-background to-background/50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl md:text-5xl mb-4">
               Everything You Need to{' '}
               <span className="text-gradient">Dominate</span>
             </h2>
@@ -118,7 +118,7 @@ const Landing = () => {
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 mb-4 group-hover:bg-primary/20 transition-smooth">
                       <Icon className={`h-6 w-6 ${feature.color}`} />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                    <h3 className="text-xl mb-2">{feature.title}</h3>
                     <p className="text-muted-foreground">{feature.description}</p>
                   </CardContent>
                 </Card>
@@ -132,7 +132,7 @@ const Landing = () => {
       <section className="relative py-24">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl md:text-5xl mb-6">
               Ready to{' '}
               <span className="text-gradient-secondary">Join the Elite</span>?
             </h2>
