@@ -5,7 +5,7 @@ import {
   Brain, 
   Target, 
   Zap, 
-  TrendingUp,
+  FileText,
   Eye,
   BarChart3,
   Lightbulb,
@@ -37,11 +37,11 @@ const AITools = () => {
     },
     {
       id: 4,
-      name: "Performance Insights",
-      description: "Deep dive analytics into your recruiting performance trends",
-      icon: TrendingUp,
-      category: "Analytics",
-      features: ["Trend Analysis", "Weakness Identification", "Progress Tracking"],
+      name: "JD Generator",
+      description: "AI-powered job description generator for creating compelling and targeted job postings",
+      icon: FileText,
+      category: "Content",
+      features: ["Smart Job Description Creation", "Industry Best Practices", "ATS Optimization"],
       status: "Available",
       premium: false
     },
@@ -108,7 +108,7 @@ const AITools = () => {
           </Card>
           <Card className="text-center bg-card/50 backdrop-blur-sm border-border/50">
             <CardContent className="p-6">
-              <TrendingUp className="h-8 w-8 text-accent mx-auto mb-2" />
+              <BarChart3 className="h-8 w-8 text-accent mx-auto mb-2" />
               <div className="text-2xl font-bold text-gradient mb-1">89%</div>
               <div className="text-sm text-muted-foreground">Accuracy Rate</div>
             </CardContent>
