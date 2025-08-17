@@ -27,14 +27,14 @@ const AITools = () => {
       premium: false
     },
     {
-      id: 3,
-      name: "Real-time Coach",
-      description: "Live AI coaching during recruiting simulation contest with instant feedback and tips",
-      icon: Zap,
-      category: "Coaching",
-      features: ["Live Feedback", "Tactical Suggestions", "Decision Support"],
-      status: "Beta",
-      premium: true
+      id: 5,
+      name: "Comms Buddy",
+      description: "AI assistant that helps draft and improve recruiting communications using voice or text input",
+      icon: MessageCircle,
+      category: "Communications",
+      features: ["Voice & Text Input", "Draft Recommendations", "Communication Enhancement"],
+      status: "Available",
+      premium: false
     },
     {
       id: 4,
@@ -47,14 +47,14 @@ const AITools = () => {
       premium: false
     },
     {
-      id: 5,
-      name: "Comms Buddy",
-      description: "AI assistant that helps draft and improve recruiting communications using voice or text input",
-      icon: MessageCircle,
-      category: "Communications",
-      features: ["Voice & Text Input", "Draft Recommendations", "Communication Enhancement"],
-      status: "Available",
-      premium: false
+      id: 3,
+      name: "Real-time Coach",
+      description: "Live AI coaching during recruiting simulation contest with instant feedback and tips",
+      icon: Zap,
+      category: "Coaching",
+      features: ["Live Feedback", "Tactical Suggestions", "Decision Support"],
+      status: "Beta",
+      premium: true
     },
     {
       id: 6,
