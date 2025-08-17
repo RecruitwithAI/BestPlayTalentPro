@@ -6,6 +6,7 @@ import {
   Target, 
   Zap, 
   FileText,
+  MessageCircle,
   Eye,
   BarChart3,
   Lightbulb,
@@ -42,6 +43,16 @@ const AITools = () => {
       icon: FileText,
       category: "Content",
       features: ["Smart Job Description Creation", "Industry Best Practices", "ATS Optimization"],
+      status: "Available",
+      premium: false
+    },
+    {
+      id: 5,
+      name: "Comms Buddy",
+      description: "AI assistant that helps draft and improve recruiting communications using voice or text input",
+      icon: MessageCircle,
+      category: "Communications",
+      features: ["Voice & Text Input", "Draft Recommendations", "Communication Enhancement"],
       status: "Available",
       premium: false
     },
