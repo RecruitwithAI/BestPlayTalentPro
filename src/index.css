@@ -8,15 +8,15 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Gaming-inspired dark theme */
-    --background: 221 39% 11%;
-    --foreground: 210 40% 98%;
+    /* Gaming-inspired pink theme */
+    --background: 330 75% 85%;
+    --foreground: 330 39% 11%;
 
-    --card: 221 39% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 330 75% 85%;
+    --card-foreground: 330 39% 11%;
 
-    --popover: 221 39% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 330 75% 85%;
+    --popover-foreground: 330 39% 11%;
 
     /* Gaming primary - Vibrant purple */
     --primary: 260 85% 65%;
