@@ -12,6 +12,7 @@ import AITools from "./pages/AITools";
 import LiveJam from "./pages/LiveJam";
 import Contests from "./pages/Contests";
 import Training from "./pages/Training";
+import SearchStrategyCreator from "./pages/SearchStrategyCreator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ai-tools" element={<AITools />} />
+          <Route path="/ai-tools/search-strategy" element={<SearchStrategyCreator />} />
           <Route path="/live-jam" element={<LiveJam />} />
           <Route path="/contests" element={<Contests />} />
           <Route path="/training" element={<Training />} />

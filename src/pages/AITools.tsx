@@ -89,8 +89,12 @@ const AITools = () => {
   };
 
   const handleToolLaunch = (toolName: string) => {
-    // This would integrate with your AI backend
-    console.log(`Launching ${toolName}...`);
+    // Navigate to Search Strategy Creator if that tool is clicked
+    if (toolName === "Search Strategy Creator") {
+      window.location.href = "/ai-tools/search-strategy";
+    } else {
+      console.log(`Launching ${toolName}...`);
+    }
   };
 
   return (
