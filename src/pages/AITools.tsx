@@ -11,7 +11,8 @@ import {
   BarChart3,
   Lightbulb,
   Bot,
-  Sparkles
+  Sparkles,
+  Search
 } from 'lucide-react';
 
 const AITools = () => {
@@ -63,6 +64,16 @@ const AITools = () => {
       icon: BarChart3,
       category: "Trends",
       features: ["Meta Analysis", "Trend Forecasting", "Adaptation Strategies"],
+      status: "Available",
+      premium: false
+    },
+    {
+      id: 7,
+      name: "Search Strategy Creator",
+      description: "AI-powered tool to create and optimize comprehensive search strategies for talent acquisition",
+      icon: Search,
+      category: "Strategy",
+      features: ["Boolean String Generation", "Multi-Platform Optimization", "Candidate Pool Analysis"],
       status: "Available",
       premium: false
     }
