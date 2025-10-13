@@ -35,7 +35,6 @@ const Dashboard = () => {
   const upcomingEvents = [
     { name: "Monthly Championship", date: "Tomorrow", participants: "500+" },
     { name: "AI Workshop", date: "This Weekend", participants: "50+" },
-    { name: "Community Jam", date: "Next Week", participants: "200+" },
   ];
 
   const quickActions = [
