@@ -13,6 +13,7 @@ import LiveJam from "./pages/LiveJam";
 import Contests from "./pages/Contests";
 import Training from "./pages/Training";
 import SearchStrategyCreator from "./pages/SearchStrategyCreator";
+import Calendar from "./pages/Calendar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/live-jam" element={<LiveJam />} />
           <Route path="/contests" element={<Contests />} />
           <Route path="/training" element={<Training />} />
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

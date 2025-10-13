@@ -9,7 +9,8 @@ import {
   Users, 
   Trophy, 
   GraduationCap,
-  LayoutDashboard 
+  LayoutDashboard,
+  Calendar
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -22,6 +23,7 @@ const Navbar = () => {
     { name: 'Collaboration', href: '/live-jam', icon: Users },
     { name: 'Challenges', href: '/contests', icon: Trophy },
     { name: 'Training', href: '/training', icon: GraduationCap },
+    { name: 'Calendar', href: '/calendar', icon: Calendar },
   ];
 
   const isActive = (path: string) => location.pathname === path;
