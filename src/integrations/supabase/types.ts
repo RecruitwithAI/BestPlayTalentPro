@@ -50,7 +50,7 @@ export type Database = {
         }
         Relationships: []
       }
-      profiles: {
+      subscriber: {
         Row: {
           avatar_url: string | null
           bio: string | null
