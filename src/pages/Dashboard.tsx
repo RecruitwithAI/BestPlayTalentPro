@@ -58,29 +58,51 @@ const Dashboard = () => {
           </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Stats Grid with Performance */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             const percentage = (stat.value / stat.total) * 100;
             return (
               <Card key={index} className="bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-smooth">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <Icon className={`h-6 w-6 ${stat.color}`} />
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <Icon className={`h-5 w-5 ${stat.color}`} />
                     <Badge variant="secondary" className="text-xs">
                       {stat.value}/{stat.total}
                     </Badge>
                   </div>
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
-                    <Progress value={percentage} className="h-2" />
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium text-muted-foreground">{stat.label}</p>
+                    <Progress value={percentage} className="h-1.5" />
                     <p className="text-xs text-muted-foreground">{percentage.toFixed(0)}% Complete</p>
                   </div>
                 </CardContent>
               </Card>
             );
           })}
+          
+          {/* Performance Card */}
+          <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+            <CardContent className="p-4">
+              <div className="flex items-center mb-2">
+                <TrendingUp className="h-5 w-5 text-accent" />
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-medium text-muted-foreground">Performance</p>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs">Rating</span>
+                    <span className="font-bold text-xs text-gradient">1,847</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs">Win Rate</span>
+                    <span className="font-bold text-xs text-accent">73.2%</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -152,35 +174,6 @@ const Dashboard = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Performance Chart */}
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <TrendingUp className="h-5 w-5 text-accent" />
-                  <span>Performance</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Skill Rating</span>
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 text-accent fill-current" />
-                      <span className="font-bold text-gradient">1,847</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Global Rank</span>
-                    <Badge variant="secondary">#2,156</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Win Rate</span>
-                    <span className="font-bold text-accent">73.2%</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Upcoming Events */}
             <Card className="bg-card/50 backdrop-blur-sm border-border/50">
               <CardHeader>
