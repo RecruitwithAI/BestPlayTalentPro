@@ -50,6 +50,104 @@ export type Database = {
         }
         Relationships: []
       }
+      challenge_submissions: {
+        Row: {
+          challenge_id: string
+          created_at: string
+          feedback: string | null
+          id: string
+          messaging_flow: Json
+          sentiment_score: number | null
+          status: Database["public"]["Enums"]["submission_status"]
+          submitted_by: string
+          updated_at: string
+        }
+        Insert: {
+          challenge_id: string
+          created_at?: string
+          feedback?: string | null
+          id?: string
+          messaging_flow: Json
+          sentiment_score?: number | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          submitted_by: string
+          updated_at?: string
+        }
+        Update: {
+          challenge_id?: string
+          created_at?: string
+          feedback?: string | null
+          id?: string
+          messaging_flow?: Json
+          sentiment_score?: number | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          submitted_by?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenge_submissions_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "challenge_submissions_submitted_by_fkey"
+            columns: ["submitted_by"]
+            isOneToOne: false
+            referencedRelation: "subscriber"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      challenges: {
+        Row: {
+          candidate_situation: string
+          created_at: string
+          created_by: string
+          deadline: string | null
+          description: string
+          id: string
+          max_submissions: number | null
+          status: Database["public"]["Enums"]["challenge_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          candidate_situation: string
+          created_at?: string
+          created_by: string
+          deadline?: string | null
+          description: string
+          id?: string
+          max_submissions?: number | null
+          status?: Database["public"]["Enums"]["challenge_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          candidate_situation?: string
+          created_at?: string
+          created_by?: string
+          deadline?: string | null
+          description?: string
+          id?: string
+          max_submissions?: number | null
+          status?: Database["public"]["Enums"]["challenge_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenges_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "subscriber"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       subscriber: {
         Row: {
           avatar_url: string | null
@@ -88,7 +186,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      challenge_status: "draft" | "active" | "closed" | "judging" | "completed"
       event_type: "challenge" | "training" | "live_jam"
+      submission_status:
+        | "draft"
+        | "submitted"
+        | "shortlisted"
+        | "winner"
+        | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -216,7 +321,15 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      challenge_status: ["draft", "active", "closed", "judging", "completed"],
       event_type: ["challenge", "training", "live_jam"],
+      submission_status: [
+        "draft",
+        "submitted",
+        "shortlisted",
+        "winner",
+        "rejected",
+      ],
     },
   },
 } as const

@@ -14,6 +14,7 @@ import Contests from "./pages/Contests";
 import Training from "./pages/Training";
 import SearchStrategyCreator from "./pages/SearchStrategyCreator";
 import Calendar from "./pages/Calendar";
+import CandidateSentiment from "./pages/CandidateSentiment";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/contests" element={<Contests />} />
           <Route path="/training" element={<Training />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/candidate-sentiment" element={<CandidateSentiment />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

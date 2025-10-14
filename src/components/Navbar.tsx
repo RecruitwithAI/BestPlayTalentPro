@@ -22,6 +22,7 @@ const Navbar = () => {
     { name: 'AI Tools', href: '/ai-tools', icon: Zap },
     { name: 'Collaboration', href: '/live-jam', icon: Users },
     { name: 'Challenges', href: '/contests', icon: Trophy },
+    { name: 'Candidate Sentiment', href: '/candidate-sentiment', icon: Trophy },
     { name: 'Training', href: '/training', icon: GraduationCap },
     { name: 'Calendar', href: '/calendar', icon: Calendar },
   ];
