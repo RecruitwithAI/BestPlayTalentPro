@@ -173,6 +173,20 @@ const Dashboard = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
+            {/* Achievement */}
+            <Card className="bg-gradient-primary/10 border-primary/20">
+              <CardContent className="p-6 text-center">
+                <Award className="h-12 w-12 text-primary mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Level Up!</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Complete 3 more training modules to unlock Elite status
+                </p>
+                <Button variant="gaming" size="sm">
+                  Continue Training
+                </Button>
+              </CardContent>
+            </Card>
+
             {/* Upcoming Events */}
             <Card className="bg-card/50 backdrop-blur-sm border-border/50">
               <CardHeader>
@@ -191,20 +205,6 @@ const Dashboard = () => {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Achievement */}
-            <Card className="bg-gradient-primary/10 border-primary/20">
-              <CardContent className="p-6 text-center">
-                <Award className="h-12 w-12 text-primary mx-auto mb-3" />
-                <h3 className="font-bold mb-2">Level Up!</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Complete 3 more training modules to unlock Elite status
-                </p>
-                <Button variant="gaming" size="sm">
-                  Continue Training
-                </Button>
               </CardContent>
             </Card>
           </div>
