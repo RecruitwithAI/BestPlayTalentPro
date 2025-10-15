@@ -8,44 +8,47 @@
 ## System Overview
 
 BestPlay Hub uses a hybrid architecture combining:
-- **TagMango**: Course purchases & community access tiers
-- **Supabase**: OAuth authentication, PostgreSQL database, file storage
-- **Go Microservices**: AI/ML tools, RAG-based JD generation, custom ML workloads
-- **React Frontend**: User interface (existing codebase)
-- **VPS Hosting**: Dedicated server for Go services + domain management via Hostinger
+- **TagMango**: **Primary sign-up platform**, payment processing, subscription management, course delivery, and training communications
+- **Supabase**: Database for synced user data with tier classification, file storage, and session management
+- **Go Microservices (Gin)**: AI tools via OpenRouter, RAG-based JD generation, custom ML models, and TagMango webhook handling
+- **React Frontend**: User interface for AI tools and gamification features (existing codebase)
+- **Hostinger VPS**: Dedicated server for Go services with domain management
 
 ---
 
 ## Architecture Diagram
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         FRONTEND LAYER                           │
-│  React + TypeScript + Vite + Tailwind (Existing Codebase)       │
-└───────────┬─────────────────────────────────┬──────────────────┘
-            │                                 │
-            │                                 │
-            ▼                                 ▼
-┌───────────────────────┐         ┌─────────────────────────────┐
-│   SUPABASE BACKEND    │         │   GO MICROSERVICES (VPS)    │
-│                       │         │                             │
-│ • PostgreSQL DB       │◄────────┤ • TagMango Webhook Handler  │
-│ • Auth (OAuth)        │         │ • AI Tools Service          │
-│ • Storage             │         │ • JD Generator (RAG)        │
-│ • Edge Functions      │         │ • Custom ML Models          │
-│   (Simple ops)        │         │ • Sentiment Analysis        │
-└───────────┬───────────┘         └──────────┬──────────────────┘
-            │                                │
-            │                                │
-            ▼                                ▼
-┌───────────────────────┐         ┌─────────────────────────────┐
-│   TAGMANGO PLATFORM   │         │   VPS INFRASTRUCTURE        │
-│                       │         │                             │
-│ • Course Management   │         │ • Hostinger VPS             │
-│ • Payment Processing  │         │ • Domain Management         │
-│ • Community Tiers     │         │ • Go Services Deployment    │
-│ • Webhooks            │─────────┤ • Vector DB (RAG)           │
-└───────────────────────┘         └─────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│                         FRONTEND LAYER                                │
+│  React + TypeScript + Vite + Tailwind (AI Tools & Gamification)      │
+└───────────┬──────────────────────────────────────┬───────────────────┘
+            │                                      │
+            │                                      │
+            ▼                                      ▼
+┌────────────────────────┐         ┌──────────────────────────────────┐
+│   SUPABASE BACKEND     │         │   GO MICROSERVICES (Gin/VPS)     │
+│                        │         │                                  │
+│ • PostgreSQL DB        │◄────────┤ • TagMango Webhook Handler       │
+│   (Synced User Data)   │         │ • AI Service (OpenRouter)        │
+│ • Storage              │         │ • JD Generator (RAG + pgvector)  │
+│ • Session Management   │         │ • Custom ML Models               │
+│ • Simple Edge Functions│         │                                  │
+└────────────────────────┘         └───────────┬──────────────────────┘
+                                               │
+                                               │
+                                               ▼
+┌────────────────────────┐         ┌──────────────────────────────────┐
+│   TAGMANGO PLATFORM    │         │   VPS INFRASTRUCTURE             │
+│   (Primary Sign-up)    │         │                                  │
+│                        │         │ • Hostinger VPS                  │
+│ • User Registration    │         │ • Domain (api.bestplayhub.com)   │
+│ • Payment Processing   │         │ • Docker + Docker Compose        │
+│ • Subscriptions        │         │ • Nginx (SSL/Reverse Proxy)      │
+│ • Course Delivery      │         │ • pgvector (in Supabase PG)      │
+│ • Training Comms       │─────────┤ • Redis (Caching)                │
+│ • Webhooks             │         │                                  │
+└────────────────────────┘         └──────────────────────────────────┘
 ```
 
 ---
@@ -55,92 +58,122 @@ BestPlay Hub uses a hybrid architecture combining:
 ### 1. Frontend Layer (React/TypeScript)
 **Status:** Existing codebase
 **Responsibilities:**
-- User interface for all features
-- OAuth login flows (via Supabase)
+- User interface for AI tools and gamification features
+- Display user tier status and feature access control
 - Real-time updates (Supabase realtime)
 - API calls to both Supabase and Go services
 
 **Key Pages:**
 - `/landing` - Public landing page
-- `/auth` - Login/signup (Supabase OAuth)
-- `/dashboard` - User dashboard with stats
-- `/ai-tools` - AI tool launcher
-- `/contests` - Challenge submissions
+- `/login` - Login page (links to TagMango or uses synced credentials)
+- `/dashboard` - User dashboard with stats and tier information
+- `/ai-tools` - AI tool launcher (tier-gated)
+- `/ai-tools/search-strategy` - Search strategy creator
+- `/candidate-sentiment` - Sentiment analysis
+- `/contests` - Challenge submissions and leaderboards
 - `/calendar` - Event management
-- `/training` - Course access (TagMango integration)
+- `/training` - Redirects to TagMango platform for courses
 
 ---
 
-### 2. TagMango Integration
-**Purpose:** Course purchases & community access management
+### 2. TagMango Integration (Primary Sign-up & Payment Platform)
+**Purpose:** TagMango handles all user registration, payments, subscriptions, and training delivery
 
-#### User Flow:
-1. User purchases course/tier on TagMango
-2. TagMango sends webhook to Go service
-3. Go service processes webhook:
-   - Validates signature
-   - Creates/updates user in Supabase Auth
-   - Updates `subscriber` table with tier info
-   - Grants appropriate access permissions
+#### Complete User Flow:
+1. **New User Signs Up** on TagMango platform
+   - Enters email, name, phone
+   - Selects subscription tier (free/basic/premium/pro)
+   - Completes payment (if paid tier)
+2. **TagMango Webhook Fires** to Go service
+3. **Go Service Creates User** in Supabase
+   - Creates user in Supabase Auth (passive account)
+   - Creates subscriber profile with `tagmango_user_id` and tier
+   - Sets `subscription_tier` and `subscription_status`
+4. **User Accesses BestPlay App** with pre-configured profile
+5. **Ongoing Sync:** Subscription updates continuously synced via webhooks
 
-#### Webhook Payload (Expected):
+#### Webhook Payloads (Expected):
+
+**Event 1: User Registration**
 ```json
 {
-  "event": "course_purchase",
+  "event": "user.created",
   "user": {
+    "id": "tagmango_user_123",
     "email": "user@example.com",
     "name": "John Doe",
-    "phone": "+1234567890"
+    "phone": "+1234567890",
+    "created_at": "2025-10-15T10:30:00Z"
   },
-  "course": {
-    "id": "course_123",
-    "name": "Advanced Recruiting Strategies",
-    "tier": "premium"
-  },
-  "transaction": {
-    "id": "txn_456",
-    "amount": 9900,
-    "currency": "INR"
-  },
-  "timestamp": "2025-10-15T10:30:00Z"
+  "subscription": {
+    "tier": "free",
+    "status": "active"
+  }
 }
 ```
 
-#### Database Schema Updates Needed:
+**Event 2: Subscription Purchase/Update**
+```json
+{
+  "event": "subscription.updated",
+  "user_id": "tagmango_user_123",
+  "subscription": {
+    "tier": "premium",
+    "status": "active",
+    "started_at": "2025-10-15T10:30:00Z",
+    "expires_at": "2025-02-15T10:30:00Z"
+  },
+  "purchase": {
+    "amount": 9900,
+    "currency": "INR",
+    "transaction_id": "txn_456"
+  }
+}
+```
+
+#### Database Schema Updates:
 ```sql
--- Add to subscriber table
+-- Add columns to subscriber table
 ALTER TABLE subscriber 
-ADD COLUMN tagmango_user_id TEXT,
-ADD COLUMN access_tier TEXT DEFAULT 'free',
-ADD COLUMN tier_expires_at TIMESTAMP WITH TIME ZONE,
-ADD COLUMN courses_purchased JSONB DEFAULT '[]'::jsonb;
+ADD COLUMN IF NOT EXISTS tagmango_user_id TEXT UNIQUE,
+ADD COLUMN IF NOT EXISTS subscription_tier TEXT DEFAULT 'free',
+ADD COLUMN IF NOT EXISTS subscription_status TEXT DEFAULT 'active',
+ADD COLUMN IF NOT EXISTS subscription_expires_at TIMESTAMPTZ;
 
 -- Create index for quick lookups
-CREATE INDEX idx_subscriber_tagmango_id ON subscriber(tagmango_user_id);
+CREATE INDEX IF NOT EXISTS idx_subscriber_tagmango_id ON subscriber(tagmango_user_id);
 ```
+
+#### Subscription Tiers:
+- **free**: Basic access to AI tools (limited usage)
+- **basic**: L1 training + standard AI tool access
+- **premium**: L1 + L2 training + advanced AI features (JD Generator, unlimited sentiment analysis)
+- **pro**: Full access (L1/L2/L3 + unlimited AI + custom ML + priority support)
 
 ---
 
 ### 3. Supabase Backend
-**Purpose:** Core data persistence, auth, storage
+**Purpose:** Synced user data storage, session management, file storage
 
 #### Kept in Supabase:
-- **Authentication:** OAuth providers (Google, GitHub, etc.)
-- **Database:** PostgreSQL tables (subscriber, challenges, calendar_events, etc.)
-- **Storage:** File uploads (avatars, documents)
-- **Simple Edge Functions:** Basic CRUD operations, simple validations
+- **Database:** PostgreSQL with synced user data from TagMango
+  - Tables: `subscriber` (with tier classification), `challenges`, `calendar_events`, `challenge_submissions`
+  - **pgvector extension** for RAG embeddings
+- **Storage:** File uploads (avatars, challenge submissions, documents)
+- **Session Management:** User session persistence after authentication
+- **Simple Edge Functions:** Lightweight operations only (heavy AI moved to Go)
 
 #### Why Keep Supabase:
-- Excellent OAuth integration
-- Real-time subscriptions
+- Managed PostgreSQL with pgvector for RAG
+- Real-time subscriptions for live features
 - Built-in RLS (Row Level Security)
-- Managed PostgreSQL
 - Auto-generated TypeScript types
+- Integrated file storage with security policies
 
 ---
 
-### 4. Go Microservices (VPS)
-**Purpose:** Heavy AI/ML workloads, RAG, custom logic
+### 4. Go Microservices (Hostinger VPS - Gin Framework)
+**Purpose:** AI tools via OpenRouter, RAG with pgvector, TagMango webhook handling, custom ML
 
 #### Service Architecture:
 
@@ -168,30 +201,40 @@ go-services/
 #### Services Detail:
 
 ##### 4.1 TagMango Webhook Handler
-**Endpoint:** `POST /webhooks/tagmango`
+**Endpoints:**
+- `POST /webhooks/tagmango/user-created` - New user registration
+- `POST /webhooks/tagmango/subscription-updated` - Subscription changes
+- `POST /webhooks/tagmango/user-updated` - Profile updates
+
 **Responsibilities:**
 - Validate TagMango webhook signatures
-- Create users in Supabase Auth
-- Update subscriber table with tier info
-- Send confirmation emails
+- Create users in Supabase Auth (passive accounts)
+- Create/update subscriber profiles with tier classification
+- Log transactions for audit trail
 
 **Tech Stack:**
-- `fiber` or `gin` for HTTP server
+- **Gin** framework for HTTP server
 - `supabase-go` client for DB operations
-- Redis for rate limiting
+- Webhook signature verification
+- Redis for rate limiting and idempotency
 
-##### 4.2 AI Tools Service
+##### 4.2 AI Service (OpenRouter Integration)
 **Endpoints:**
-- `POST /api/v1/sentiment/analyze` - Sentiment analysis (replaces Supabase edge function)
-- `POST /api/v1/search-strategy/generate` - Search strategy (replaces Supabase edge function)
+- `POST /api/v1/ai/chat` - Multi-LLM chat (GPT-4, Claude, Llama, etc.)
+- `POST /api/v1/ai/sentiment` - Sentiment analysis (migrated from Edge Function)
+- `POST /api/v1/ai/strategy` - Search strategy generation (migrated from Edge Function)
 
 **Tech Stack:**
-- Custom ML models (TensorFlow, PyTorch via CGO or gRPC to Python)
-- HTTP server (Fiber/Gin)
-- Connection pool to PostgreSQL
+- **Gin** framework
+- **OpenRouter API client** for multi-LLM access
+- Custom prompt engineering and context management
+- Connection pool to Supabase PostgreSQL
 
-##### 4.3 JD Generator with RAG
-**Endpoint:** `POST /api/v1/jd/generate`
+##### 4.3 JD Generator with RAG (pgvector)
+**Endpoints:**
+- `POST /api/v1/jd/generate` - Generate JD from requirements
+- `POST /api/v1/jd/refine` - Refine existing JD with RAG context
+- `GET /api/v1/jd/history` - User's JD generation history
 
 **Request:**
 ```json
@@ -236,10 +279,11 @@ go-services/
 7. Return with sources
 
 **Tech Stack:**
-- Vector DB: `Qdrant` or `Weaviate` (self-hosted on VPS)
-- Embeddings: `sentence-transformers` via Python service or `all-MiniLM-L6-v2`
-- LLM: OpenAI API or Lovable AI Gateway
-- Go packages: `go-openai`, vector DB clients
+- **Gin** framework
+- **pgvector extension** in Supabase PostgreSQL (no separate vector DB needed!)
+- **OpenRouter API** for embeddings and generation
+- Custom RAG implementation with semantic search
+- PostgreSQL connection pool for vector queries
 
 ---
 
@@ -452,8 +496,8 @@ CREATE INDEX idx_tagmango_subscriber ON tagmango_transactions(subscriber_id);
    - AI Tools API
    - JD Generator
 
-2. **Vector Database** (Qdrant/Weaviate)
-   - Self-hosted for RAG
+2. **pgvector** (Supabase PostgreSQL)
+   - Vector embeddings for RAG (no separate vector DB needed)
 
 3. **Redis** (Optional)
    - Caching layer
@@ -497,19 +541,10 @@ services:
     build: ./cmd/jd-generator
     ports:
       - "8082:8082"
-    depends_on:
-      - qdrant
     environment:
-      - VECTOR_DB_URL=http://qdrant:6333
-      - LOVABLE_API_KEY=${LOVABLE_API_KEY}
-    restart: unless-stopped
-
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_storage:/qdrant/storage
+      - SUPABASE_URL=https://nclaesdxpwhfgkrnactl.supabase.co
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
     restart: unless-stopped
 
   nginx:
@@ -526,8 +561,6 @@ services:
       - jd-generator
     restart: unless-stopped
 
-volumes:
-  qdrant_storage:
 ```
 
 #### Nginx Configuration:
@@ -736,10 +769,9 @@ VITE_GO_API_URL=https://api.bestplayhub.com
 | Domain (bestplayhub.com) | $1-2 |
 | SSL Certificate | Free (Let's Encrypt) |
 | Supabase (Free tier) | $0 |
-| OpenAI API (moderate usage) | $50-100 |
-| Lovable AI Gateway | $20-50 |
+| OpenRouter API (moderate usage) | $30-80 |
 | TagMango Platform | Variable |
-| **Total** | **~$100-200/month** |
+| **Total** | **~$50-150/month** |
 
 ---
 
